@@ -1,11 +1,10 @@
 import { render } from '@testing-library/react';
 
-import App from './app';
+import PokedexHeader from './PokedexHeader';
 
-describe('App', () => {
+describe('PokedexHeader', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<App />);
-
+    const { baseElement } = render(<PokedexHeader />);
     expect(baseElement).toBeTruthy();
   });
 });

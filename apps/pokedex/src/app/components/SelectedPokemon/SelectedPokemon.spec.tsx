@@ -1,11 +1,10 @@
 import { render } from '@testing-library/react';
 
-import App from './app';
+import SelectedPokemon from './SelectedPokemon';
 
-describe('App', () => {
+describe('SelectedPokemon', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<App />);
-
+    const { baseElement } = render(<SelectedPokemon />);
     expect(baseElement).toBeTruthy();
   });
 });

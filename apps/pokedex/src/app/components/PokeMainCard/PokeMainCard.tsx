@@ -1,21 +1,51 @@
-import { IPokedexSummary } from '../../api.types';
-import styles from './PokeMainCard.module.scss';
+import { IPokemonDetails } from '../../api/api.types';
+import Card from 'react-bootstrap/Card';
 
-/* eslint-disable-next-line */
+import { Badge, Container, Row } from 'react-bootstrap';
+
+import styled from '@emotion/styled';
+
+const StyledPokeMainCard = styled.div`
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  background-color: lightcoral;
+  padding: 1rem;
+`;
+
 export interface PokeMainCardProps {
-  summary: IPokedexSummary;
+  summary: IPokemonDetails;
 }
 
 export function PokeMainCard({ summary }: PokeMainCardProps) {
   return (
-    <div className={styles['container']}>
-      <img src={summary.ThumbnailImage} alt={summary.ThumbnailImage}></img>
-      <div>#{summary.number}</div>
-      <div>{summary.name}</div>
-      {summary.type.map((typeName) => {
-        return <div>{typeName}</div>;
-      })}
-    </div>
+    <StyledPokeMainCard>
+      <Card>
+        <Card.Img
+          src={summary.thumbnailImage}
+          alt={summary.thumbnailImageAlt}
+        ></Card.Img>
+      </Card>
+      <Card.Title>{summary.name}</Card.Title>
+      <Card.Subtitle>
+        <div>#{summary.id}</div>
+      </Card.Subtitle>
+      <Card.Body>
+        <Container>
+          <Row>Type:</Row>
+          <Row xs="auto">
+            {summary.type.map((typeName) => {
+              return <Badge>{typeName}</Badge>;
+            })}
+          </Row>
+          <Row>Weakneses:</Row>
+          <Row xs="auto">
+            {summary.weakness.map((weakness) => {
+              return <Badge>{weakness}</Badge>;
+            })}
+          </Row>
+        </Container>
+      </Card.Body>
+    </StyledPokeMainCard>
   );
 }
 
