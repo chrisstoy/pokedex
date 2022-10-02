@@ -1,29 +1,35 @@
 import styled from '@emotion/styled';
 import { Col, Container, Row } from 'react-bootstrap';
+import { useAppSelector } from '../../hooks/store.hooks';
 
 /* eslint-disable-next-line */
 export interface SelectedPokemonProps {}
 
 const StyledSelectedPokemon = styled.div`
+  border: thin solid green;
   /* background-image: url('/assets/pokeball.png'); */
 `;
 
 export function SelectedPokemon(props: SelectedPokemonProps) {
-  // const pokemon: IPokemonDetails = {};
+  const pokemon = useAppSelector((state) => state.selectedPokemon.value);
 
   return (
     <StyledSelectedPokemon>
       <Container>
-        <Row xs={1} md={2}>
-          <Col>First</Col>
-          <Col>Second</Col>
+        <Row>
+          <Col>
+            {pokemon?.name} #{pokemon?.id}
+          </Col>
         </Row>
         <Row xs={1} md={2}>
-          <Col>Third</Col>
-          <Col>Fourth</Col>
+          <Col>Image</Col>
+          <Col>Stats</Col>
+          <Col>Description</Col>
+          <Col>Physical</Col>
+          <Col>Type/Weakness</Col>
+          <Col>Evolution</Col>
         </Row>
       </Container>
-      <div></div>
     </StyledSelectedPokemon>
   );
 }

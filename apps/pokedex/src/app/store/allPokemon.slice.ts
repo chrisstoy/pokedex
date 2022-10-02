@@ -1,14 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IPokemonId } from '../api/api.types';
 
+interface IAllPokemonState {
+  value: IPokemonId[];
+}
+
+const initialState: IAllPokemonState = {
+  value: [],
+};
+
 /**
- * Holds the list of all available pokemon to search for
+ * Holds the list of all available Pokemon to search for
  */
 const allPokemnonSlice = createSlice({
   name: 'allPokemon',
-  initialState: {
-    value: [] as IPokemonId[],
-  },
+  initialState,
   reducers: {
     set: (state, action) => {
       state.value = action.payload;

@@ -1,14 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+interface ISearchedPokemonState {
+  value: string;
+  previousValues: string[];
+}
+
+const initialState: ISearchedPokemonState = {
+  value: '',
+  previousValues: [],
+};
+
 /**
  * Tracks the currently searched Pokemon and list of all previous searches
  */
-const searchedPokemnonSlice = createSlice({
-  name: 'selectedPokemon',
-  initialState: {
-    value: '',
-    previousValues: [] as string[],
-  },
+const searchedPokemonSlice = createSlice({
+  name: 'searchedPokemon',
+  initialState,
   reducers: {
     set: (state, action) => {
       state.previousValues = [state.value, ...state.previousValues];
@@ -17,5 +24,5 @@ const searchedPokemnonSlice = createSlice({
   },
 });
 
-export const { set } = searchedPokemnonSlice.actions;
-export default searchedPokemnonSlice.reducer;
+export const { set } = searchedPokemonSlice.actions;
+export default searchedPokemonSlice.reducer;
