@@ -11,7 +11,7 @@ const StyledSelectedPokemon = styled.div`
 `;
 
 export function SelectedPokemon(props: SelectedPokemonProps) {
-  const pokemon = useAppSelector((state) => state.selectedPokemon.value);
+  const pokemon = useAppSelector((state) => state.selectedPokemon.details);
 
   return (
     <StyledSelectedPokemon>

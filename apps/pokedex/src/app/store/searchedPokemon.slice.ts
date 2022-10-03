@@ -17,12 +17,22 @@ const searchedPokemonSlice = createSlice({
   name: 'searchedPokemon',
   initialState,
   reducers: {
-    set: (state, action) => {
-      state.previousValues = [state.value, ...state.previousValues];
+    setSearchedPokemon: (state, action: { payload: string; type: string }) => {
+      if (state.value && state.value !== action.payload) {
+        // a new value for searched, so store the previous value
+        state.previousValues = [state.value, ...state.previousValues];
+      }
+      state.value = action.payload;
+    },
+    setPreviouslySearchedPokemon: (
+      state,
+      action: { payload: string; type: string }
+    ) => {
       state.value = action.payload;
     },
   },
 });
 
-export const { set } = searchedPokemonSlice.actions;
+export const { setSearchedPokemon, setPreviouslySearchedPokemon } =
+  searchedPokemonSlice.actions;
 export default searchedPokemonSlice.reducer;

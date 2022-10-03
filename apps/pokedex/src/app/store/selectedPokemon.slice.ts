@@ -2,11 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { IPokemonDetails } from '../api/api.types';
 
 interface ISelectedPokemnonState {
-  value: IPokemonDetails | null;
+  details: IPokemonDetails | null; // details for the currently selected Pokemon
+  isLoading: boolean; // true when a Pokemon details are loading
 }
 
 const initialState: ISelectedPokemnonState = {
-  value: null,
+  details: null,
+  isLoading: false,
 };
 
 /**
@@ -16,11 +18,14 @@ const selectedPokemonSlice = createSlice({
   name: 'selectedPokemon',
   initialState,
   reducers: {
-    set: (state, action) => {
-      state.value = action.payload;
+    setDetails: (state, action: { payload: IPokemonDetails | null }) => {
+      state.details = action.payload;
+    },
+    setIsLoading: (state, action: { payload: boolean }) => {
+      state.isLoading = action.payload;
     },
   },
 });
 
-export const { set } = selectedPokemonSlice.actions;
+export const { setDetails, setIsLoading } = selectedPokemonSlice.actions;
 export default selectedPokemonSlice.reducer;

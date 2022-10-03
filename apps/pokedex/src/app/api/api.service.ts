@@ -22,15 +22,29 @@ const getIdFromUrl = (url: string): number => {
  * @returns list of IPokemonIds
  */
 export const fetchAllPokemon = (): Promise<IPokemonId[]> => {
+  let allPokemon: IPokemonId[] = [];
+
+  if (allPokemon.length > 0) {
+    // return cached data
+    return Promise.resolve(allPokemon);
+  }
+
   // Note: For now, get up to the first 2000 pokemon. In the future, support fetching additional pages
   return fetch(`${API_ROOT}/pokemon?limit=2000`)
     .then((response) => response.json())
     .then((details) =>
-      details.results.map((result: { name: string; url: string }) => ({
-        name: result.name,
-        id: getIdFromUrl(result.url),
-      }))
-    );
+      details.results.map(
+        (result: { name: string; url: string }) =>
+          ({
+            name: result.name,
+            id: getIdFromUrl(result.url),
+          } as IPokemonId)
+      )
+    )
+    .then((pokemonList: IPokemonId[]) => {
+      allPokemon = pokemonList;
+      return allPokemon;
+    });
 };
 
 /**
