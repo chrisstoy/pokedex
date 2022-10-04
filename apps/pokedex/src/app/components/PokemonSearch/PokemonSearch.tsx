@@ -2,12 +2,11 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { Button, Dropdown, Form, InputGroup } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
-import { useSelector } from 'react-redux';
 import { IPokemonId } from '../../api/api.types';
 import { useAppDispatch, useAppSelector } from '../../hooks/store.hooks';
 import {
-  setSearchedPokemon,
-  setPreviouslySearchedPokemon,
+  loadPreviousPokemon,
+  searchForPokemon,
 } from '../../store/searchedPokemon.slice';
 
 /* eslint-disable-next-line */
@@ -27,25 +26,27 @@ export function PokemonSearch(props: PokemonSearchProps) {
   const [selected, setSelected] = useState([] as IPokemonId[]);
 
   const previousSearches = useAppSelector(
-    (state) => state.searchedPokemon.previousValues
+    (state) => state.searchedPokemon.previousSearches
   );
   const options = useAppSelector((state) => state.allPokemon.allPokemon);
   const isLoading = useAppSelector((state) => state.selectedPokemon.isLoading);
 
   const dispatch = useAppDispatch();
-  const searchHandler = (value: any) => {
+  const searchHandler = () => {
     // set newly searched for Pokemon
-
-    if (selected?.[0]) {
-      dispatch(setSearchedPokemon(selected?.[0].name));
+    const name = selected?.[0]?.name;
+    if (name) {
+      dispatch(searchForPokemon(name));
     }
+    setSelected([]);
   };
 
   const previousSearchSelectedHandler = (value: string | null) => {
     // select a previously searched for Pokemon
     if (value) {
-      dispatch(setPreviouslySearchedPokemon(value));
+      dispatch(loadPreviousPokemon(value));
     }
+    setSelected([]);
   };
 
   return (
@@ -72,7 +73,7 @@ export function PokemonSearch(props: PokemonSearchProps) {
               {previousSearches.map((previous, index) => {
                 return (
                   <Dropdown.Item
-                    disabled={!isLoading}
+                    disabled={isLoading}
                     key={index}
                     eventKey={previous}
                   >

@@ -15,6 +15,25 @@ export interface IAbility {
 }
 
 /**
+ * A Stat for a Pokemon
+ */
+export interface IStat {
+  name: string;
+  value: number;
+}
+
+export interface IVariety {
+  name: string;
+  isDefault: boolean;
+}
+
+export interface IWeakness {
+  doubleDamage: string[];
+  halfDamage: string[];
+  totalWeakness?: string[];
+}
+
+/**
  * Detail information about a Pokemon
  * This is a collection of all important information about a Pokemon gathered from
  * multiple locations
@@ -24,12 +43,13 @@ export interface IPokemonDetails {
   name: string;
   height: number;
   weight: number;
-  thumbnailImage: string;
-  thumbnailImageAlt: string;
-
+  heroImage: string;
   abilities: IAbility[];
   type: string[];
-  weakness: string[];
+  weaknesses: string[];
   moves: string[];
-  varieties: string[];
+  varieties: IVariety[];
+  stats: IStat[];
+  flavorText: string;
+  evolutions: string[];
 }

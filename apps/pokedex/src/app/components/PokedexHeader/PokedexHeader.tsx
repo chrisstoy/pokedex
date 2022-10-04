@@ -1,12 +1,14 @@
 import styled from '@emotion/styled';
-import { Card, Container, Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
 import PokemonSearch from '../PokemonSearch/PokemonSearch';
 
 /* eslint-disable-next-line */
 export interface PokedexHeaderProps {}
 
-const StyledPokedexHeader = styled.div``;
+const StyledPokedexHeader = styled.div`
+  text-align: center;
+`;
 
 export function PokedexHeader(props: PokedexHeaderProps) {
   return (

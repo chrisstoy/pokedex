@@ -2,30 +2,26 @@
 import styled from '@emotion/styled';
 import { useEffect } from 'react';
 import { Container, Row } from 'react-bootstrap';
-import { fetchAllPokemon } from './api/api.service';
 import PokedexHeader from './components/PokedexHeader/PokedexHeader';
 import SelectedPokemon from './components/SelectedPokemon/SelectedPokemon';
 import { useAppDispatch } from './hooks/store.hooks';
-import { setAllPokemon } from './store/allPokemon.slice';
+import { loadAllPokemon } from './store/allPokemon.slice';
 
 export function App() {
-  const StyledApp = styled.div``;
-  const dispatcher = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     // load the inital list of Pokemon to search
-    fetchAllPokemon()
-      .then((pokemonList) => {
-        dispatcher(setAllPokemon(pokemonList));
-      })
-      .catch((error) => {
-        console.error(`Failed to load Pokemon! ${error}`);
-      });
-  }, []);
+    dispatch(loadAllPokemon());
+  }, [dispatch]);
+
+  const StyledApp = styled.div`
+    background-image: url('assets/container_bg.png');
+  `;
 
   return (
-    <StyledApp>
-      <Container>
+    <StyledApp className="d-flex justify-content-center">
+      <Container fluid>
         <Row>
           <PokedexHeader></PokedexHeader>
         </Row>
