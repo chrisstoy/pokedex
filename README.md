@@ -1,28 +1,47 @@
-# Ash's Pokedex - PrizePicks Technical Assessment Question
+# Ash's Pokedex
 
 by Chris Stoy
 chrisstoy@gmail.com
-(971) 762-5390
 
 # Project Details
 
 ### Running from source
 
-TODO
+After getting the source code, run the following commands to install dependencies and serve the app:
+
+```bash
+> npx yarn install
+> nx serve
+```
 
 ### Unit Testing
 
-TODO
+To execute unit tests, run the following command:
+
+```bash
+> nx test
+```
 
 ### Integration Testing
 
-TODO
+To execute e2e tests, run the following command:
 
-## Addition Work Needed for Production Release
+```bash
+> nx e2e pokedex-e2e
+```
 
-TODO
+## Additional Work Needed for Production Release
 
----
+This is a rough MVP containing meating the functional requirements, but still needing work before Ash can use it on the road.
+
+- Styling needs to be improved
+  - Improve reactive layout for different screen sizes (web and mobile)
+  - Centralize theming variables and common component styles
+  - Make the UI more visually appealing
+- Add more testing for Components and Integration
+- Add caching for loaded Pokemon details. Currently details are fetched from the API for every search. Instead, build a cache of previously searched Pokemon Details and use that, only fetching data when needed.
+- Implement localization for different language support.
+- Support more complex Evolution trees. Currently only supports linear evolutions.
 
 # Original Requirements
 

@@ -120,7 +120,9 @@ export const fetchEvolutions = async (chainId: number): Promise<string[]> => {
  * @returns details for the requested Pokemon
  */
 export const fetchPokemonDetails = async (
-  nameOrId: string | number
+  nameOrId: string | number,
+  _fetchEvolutions = fetchEvolutions,
+  _fetchWeaknessesForTypes = fetchWeaknessesForTypes
 ): Promise<IPokemonDetails> => {
   const detailsResponse = await fetch(`${API_ROOT}/pokemon/${nameOrId}`);
   const detailsBody = (await detailsResponse.json()) as PokeAPI.PokemonDetails;
@@ -131,7 +133,7 @@ export const fetchPokemonDetails = async (
   const speciesBody = (await speciesResponse.json()) as PokeAPI.PokemonSpecies;
 
   const chainId = getIdFromUrl(speciesBody.evolution_chain.url);
-  const evolutions = await fetchEvolutions(chainId);
+  const evolutions = await _fetchEvolutions(chainId);
 
   const flavorText =
     speciesBody.flavor_text_entries?.find(
@@ -140,7 +142,7 @@ export const fetchPokemonDetails = async (
 
   // fetch all the weaknesses for this Pokemon, based on its types
   const type = detailsBody.types?.map((type) => type.type.name) ?? [];
-  const weakness = await fetchWeaknessesForTypes(type);
+  const weakness = await _fetchWeaknessesForTypes(type);
 
   // convert the details to the type we need
   const details: IPokemonDetails = {

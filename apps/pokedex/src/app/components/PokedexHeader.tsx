@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Container, Row } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
-import PokemonSearch from '../PokemonSearch/PokemonSearch';
+import PokemonSearch from './PokemonSearch';
 
 /* eslint-disable-next-line */
 export interface PokedexHeaderProps {}

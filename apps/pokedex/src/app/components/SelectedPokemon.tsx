@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 import { Col, Container, Image, Row } from 'react-bootstrap';
-import { useAppSelector } from '../../hooks/store.hooks';
-import PokemonAttributes from '../details/PokemonAttributes';
-import PokemonDescription from '../details/PokemonDescription';
-import PokemonEvolutions from '../details/PokemonEvolutions';
-import PokemonImage from '../details/PokemonImage';
-import PokemonStats from '../details/PokemonStats';
-import PokemonTypeAndWeakness from '../details/PokemonTypeAndWeakness';
+import { useAppSelector } from '../hooks/store.hooks';
+import PokemonAttributes from './details/PokemonAttributes';
+import PokemonDescription from './details/PokemonDescription';
+import PokemonEvolutions from './details/PokemonEvolutions';
+import PokemonImage from './details/PokemonImage';
+import PokemonStats from './details/PokemonStats';
+import PokemonTypeAndWeakness from './details/PokemonTypeAndWeakness';
 
 /* eslint-disable-next-line */
 export interface SelectedPokemonProps {}

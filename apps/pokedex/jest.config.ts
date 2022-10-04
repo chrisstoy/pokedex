@@ -8,4 +8,5 @@ export default {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/apps/pokedex',
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
 };

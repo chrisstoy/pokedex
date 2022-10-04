@@ -1,9 +1,8 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styled from '@emotion/styled';
 import { useEffect } from 'react';
 import { Container, Row } from 'react-bootstrap';
-import PokedexHeader from './components/PokedexHeader/PokedexHeader';
-import SelectedPokemon from './components/SelectedPokemon/SelectedPokemon';
+import PokedexHeader from './components/PokedexHeader';
+import SelectedPokemon from './components/SelectedPokemon';
 import { useAppDispatch } from './hooks/store.hooks';
 import { loadAllPokemon } from './store/allPokemon.slice';
 

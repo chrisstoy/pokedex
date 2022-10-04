@@ -2,12 +2,12 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { Button, Dropdown, Form, InputGroup } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
-import { IPokemonId } from '../../api/api.types';
-import { useAppDispatch, useAppSelector } from '../../hooks/store.hooks';
+import { IPokemonId } from '../api/api.types';
+import { useAppDispatch, useAppSelector } from '../hooks/store.hooks';
 import {
   loadPreviousPokemon,
   searchForPokemon,
-} from '../../store/searchedPokemon.slice';
+} from '../store/searchedPokemon.slice';
 
 /* eslint-disable-next-line */
 export interface PokemonSearchProps {}
@@ -17,10 +17,8 @@ const StyledPokemonSearch = styled.div`
 `;
 
 /**
- * Component that allows  user to type in the name of a pokemon and set that as the one to search for
- * If multiple pokemon match, then a
- * @param props
- * @returns
+ * Component that allows  user to type in the name of a pokemon and set that as
+ * the one to load details for.
  */
 export function PokemonSearch(props: PokemonSearchProps) {
   const [selected, setSelected] = useState([] as IPokemonId[]);
@@ -29,9 +27,12 @@ export function PokemonSearch(props: PokemonSearchProps) {
     (state) => state.searchedPokemon.previousSearches
   );
   const options = useAppSelector((state) => state.allPokemon.allPokemon);
-  const isLoading = useAppSelector((state) => state.selectedPokemon.isLoading);
+  const isLoading = useAppSelector(
+    (state) => state.selectedPokemon.isLoading || state.allPokemon.isLoading
+  );
 
   const dispatch = useAppDispatch();
+
   const searchHandler = () => {
     // set newly searched for Pokemon
     const name = selected?.[0]?.name;
@@ -70,7 +71,7 @@ export function PokemonSearch(props: PokemonSearchProps) {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              {previousSearches.map((previous, index) => {
+              {previousSearches.map((previous: string, index: number) => {
                 return (
                   <Dropdown.Item
                     disabled={isLoading}
