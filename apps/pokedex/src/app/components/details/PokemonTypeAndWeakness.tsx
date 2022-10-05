@@ -26,8 +26,8 @@ export function PokemonTypeAndWeakness({
   weaknesses,
 }: PokemonTypeAndWeaknessProps) {
   return (
-    <StyledPokemonTypeAndWeakness>
-      <Container className="bottom-margin">
+    <StyledPokemonTypeAndWeakness data-testid="pokemon-details-types-and-weaknesses">
+      <Container className="bottom-margin" data-testid="types">
         <Row>Type</Row>
         <Row xs="auto">
           {types.map((type, index) => (
@@ -37,7 +37,7 @@ export function PokemonTypeAndWeakness({
           ))}
         </Row>
       </Container>
-      <Container>
+      <Container data-testid="weaknesses">
         <Row>Weaknesses</Row>
         <Row xs="auto">
           {weaknesses.map((type, index) => (

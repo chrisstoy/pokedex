@@ -34,14 +34,16 @@ export function PokemonAttributes({ pokemon }: PokemonAttributesProps) {
   ];
 
   return (
-    <StyledPokemonAttributes>
+    <StyledPokemonAttributes data-testid="pokemon-details-attributes">
       <Container>
         <Row xs={2}>
           {attributes.map((attr, index) => {
             return (
               <Col key={index}>
                 <div>{attr.name}</div>
-                <StyledAttribute>{attr.value}</StyledAttribute>
+                <StyledAttribute data-testid={`attrib=${attr.name}`}>
+                  {attr.value}
+                </StyledAttribute>
               </Col>
             );
           })}

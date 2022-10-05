@@ -32,7 +32,7 @@ const StyledAttribute = styled.div`
 
 export function PokemonStats({ stats }: PokemonStatsProps) {
   return (
-    <StyledPokemonStats>
+    <StyledPokemonStats data-testid="pokemon-details-stats">
       <Container>
         <Row className="title">Stats</Row>
         <Row xs={3}>
@@ -41,7 +41,9 @@ export function PokemonStats({ stats }: PokemonStatsProps) {
               <Col>
                 <StyledAttribute>
                   <div>{stat.name}</div>
-                  <div className="value">{stat.value}</div>
+                  <div className="value" data-testid={`stat=${stat.name}`}>
+                    {stat.value}
+                  </div>
                 </StyledAttribute>
               </Col>
             );

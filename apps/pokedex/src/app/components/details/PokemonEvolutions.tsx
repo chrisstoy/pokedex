@@ -22,7 +22,7 @@ const StyledPokemonEvolutions = styled.div`
 
 export function PokemonEvolutions({ evolutions }: PokemonEvolutionsProps) {
   return (
-    <StyledPokemonEvolutions>
+    <StyledPokemonEvolutions data-testid="pokemon-details-evolution">
       <div>Evolution</div>
       {evolutions.map((evo, index) => {
         return <li key={index}>{evo}</li>;
