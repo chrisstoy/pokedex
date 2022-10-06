@@ -36,9 +36,9 @@ export function PokemonStats({ stats }: PokemonStatsProps) {
       <Container>
         <Row className="title">Stats</Row>
         <Row xs={3}>
-          {stats.map((stat) => {
+          {stats.map((stat, index) => {
             return (
-              <Col>
+              <Col key={index}>
                 <StyledAttribute>
                   <div>{stat.name}</div>
                   <div className="value" data-testid={`stat=${stat.name}`}>

@@ -32,7 +32,7 @@ To execute e2e tests, run the following command:
 
 ## Additional Work Needed for Production Release
 
-This is a rough MVP containing meating the functional requirements, but still needing work before Ash can use it on the road.
+This is a rough MVP containing the basic functional requirements, but still needing work before Ash can use it on the road.
 
 - Styling needs to be improved
   - Improve reactive layout for different screen sizes (web and mobile)

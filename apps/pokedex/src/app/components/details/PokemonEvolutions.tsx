@@ -24,10 +24,11 @@ export function PokemonEvolutions({ evolutions }: PokemonEvolutionsProps) {
   return (
     <StyledPokemonEvolutions data-testid="pokemon-details-evolution">
       <div>Evolution</div>
-      {evolutions.map((evo, index) => {
-        return <li key={index}>{evo}</li>;
-      })}
-      <ul></ul>
+      <ul>
+        {evolutions.map((evo, index) => {
+          return <li key={index}>{evo}</li>;
+        })}
+      </ul>
     </StyledPokemonEvolutions>
   );
 }
